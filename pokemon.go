@@ -8,26 +8,30 @@ import (
 	"net/http"
 )
 
-type idType interface {
-	int | string
-}
+// GetPokemon returns a Pokemon struct containing information about the Pokemon with the given name.
+func GetPokemon(name string) (structs.Pokemon, error) {
+	pokemon, err := getPokemonFromCache(name)
+	if err != nil {
+		var url = fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%v", name)
 
-// GetPokemon returns a Pokemon struct containing information about the Pokemon with the given id/name.
-func GetPokemon[identifier idType](id identifier) (structs.Pokemon, error) {
-	var url = fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%v", id)
+		req, err := http.NewRequest("GET", url, nil)
 
-	req, err := http.NewRequest("GET", url, nil)
+		res, err := http.DefaultClient.Do(req)
 
-	res, err := http.DefaultClient.Do(req)
+		defer func(Body io.ReadCloser) {
+			err = Body.Close()
+		}(res.Body)
 
-	defer func(Body io.ReadCloser) {
-		err = Body.Close()
-	}(res.Body)
+		body, err := io.ReadAll(res.Body)
 
-	body, err := io.ReadAll(res.Body)
+		err = json.Unmarshal(body, &pokemon)
 
-	var pokemon structs.Pokemon
-	err = json.Unmarshal(body, &pokemon)
+		if err == nil {
+			err = addPokemonToCache(pokemon)
+		}
 
-	return pokemon, err
+		return pokemon, err
+	} else {
+		return pokemon, err
+	}
 }
