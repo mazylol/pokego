@@ -12,7 +12,7 @@ type idType interface {
 	int | string
 }
 
-// GetPokemon returns a Pokemon struct containing information about the Pokémon with the given id/name.
+// GetPokemon returns a Pokemon struct containing information about the Pokemon with the given id/name.
 func GetPokemon[identifier idType](id identifier) (structs.Pokemon, error) {
 	var url = fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%v", id)
 
