@@ -35,3 +35,30 @@ func GetPokemon(name string) (structs.Pokemon, error) {
 		return pokemon, err
 	}
 }
+
+func GetPokemonList(limit int) (structs.PokemonList, error) {
+	pokemonList, err := getPokemonListFromCache(limit)
+	if err != nil {
+		var url = fmt.Sprintf("https://pokeapi.co/api/v2/pokemon?limit=%v", limit)
+
+		req, err := http.NewRequest("GET", url, nil)
+
+		res, err := http.DefaultClient.Do(req)
+
+		defer func(Body io.ReadCloser) {
+			err = Body.Close()
+		}(res.Body)
+
+		body, err := io.ReadAll(res.Body)
+
+		err = json.Unmarshal(body, &pokemonList)
+
+		if err == nil {
+			err = addPokemonListToCache(pokemonList, limit)
+		}
+
+		return pokemonList, err
+	} else {
+		return pokemonList, err
+	}
+}
