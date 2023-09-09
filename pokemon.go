@@ -3,13 +3,12 @@ package pokego
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/mazylol/pokego/structs"
 	"io"
 	"net/http"
 )
 
 // GetPokemon returns a Pokemon struct containing information about the Pokemon with the given name.
-func GetPokemon(name string) (structs.Pokemon, error) {
+func GetPokemon(name string) (Pokemon, error) {
 	pokemon, err := getPokemonFromCache(name)
 	if err != nil {
 		var url = fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%v", name)
@@ -36,7 +35,7 @@ func GetPokemon(name string) (structs.Pokemon, error) {
 	}
 }
 
-func GetPokemonList(limit int) (structs.PokemonList, error) {
+func GetPokemonList(limit int) (PokemonList, error) {
 	pokemonList, err := getPokemonListFromCache(limit)
 	if err != nil {
 		var url = fmt.Sprintf("https://pokeapi.co/api/v2/pokemon?limit=%v", limit)

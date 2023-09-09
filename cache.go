@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/mazylol/pokego/structs"
 	"log"
 	"os"
 )
@@ -42,9 +41,7 @@ func create() {
 	}
 }
 
-func addPokemonToCache(pokemon structs.Pokemon) error {
-	//start()
-
+func addPokemonToCache(pokemon Pokemon) error {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -60,7 +57,7 @@ func addPokemonToCache(pokemon structs.Pokemon) error {
 	return err
 }
 
-func getPokemonFromCache(name string) (structs.Pokemon, error) {
+func getPokemonFromCache(name string) (Pokemon, error) {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -69,7 +66,7 @@ func getPokemonFromCache(name string) (structs.Pokemon, error) {
 		err = db.Close()
 	}(db)
 
-	var pokemon structs.Pokemon
+	var pokemon Pokemon
 
 	row := db.QueryRow("SELECT data FROM pokemon WHERE name = ?", name)
 
@@ -81,7 +78,7 @@ func getPokemonFromCache(name string) (structs.Pokemon, error) {
 	return pokemon, err
 }
 
-func addPokemonListToCache(pokemonList structs.PokemonList, count int) error {
+func addPokemonListToCache(pokemonList PokemonList, count int) error {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -97,7 +94,7 @@ func addPokemonListToCache(pokemonList structs.PokemonList, count int) error {
 	return err
 }
 
-func getPokemonListFromCache(count int) (structs.PokemonList, error) {
+func getPokemonListFromCache(count int) (PokemonList, error) {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -106,7 +103,7 @@ func getPokemonListFromCache(count int) (structs.PokemonList, error) {
 		err = db.Close()
 	}(db)
 
-	var pokemonList structs.PokemonList
+	var pokemonList PokemonList
 
 	row := db.QueryRow("SELECT data FROM pokemon_list WHERE count = ?", count)
 
