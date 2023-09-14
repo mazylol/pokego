@@ -36,7 +36,7 @@ fmt.Println(pokemonList.Results[0].Name)
 ```
 
 ## Features
-- [ ] Moves
+- [x] Moves
 - [ ] Abilities
 - [x] Pokémon (including various forms)
 - [ ] Types
