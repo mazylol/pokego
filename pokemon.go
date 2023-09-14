@@ -35,6 +35,7 @@ func GetPokemon(name string) (Pokemon, error) {
 	}
 }
 
+// GetPokemonList returns a list of Pokemon names. You have to include a limit for the amount of names you want.
 func GetPokemonList(limit int) (PokemonList, error) {
 	pokemonList, err := getPokemonListFromCache(limit)
 	if err != nil {
