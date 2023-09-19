@@ -8,7 +8,7 @@ import (
 func TestGetPokemon(t *testing.T) {
 	_, err := GetPokemon("slugma")
 	if err != nil {
-		t.Error("Failed to get pokemon by name")
+		t.Fatal("Failed to get pokemon by name")
 	}
 }
 
@@ -16,6 +16,6 @@ func TestGetPokemon(t *testing.T) {
 func TestGetPokemonList(t *testing.T) {
 	_, err := GetPokemonList(20)
 	if err != nil {
-		t.Error("Failed to get pokemon list")
+		t.Fatal("Failed to get pokemon list")
 	}
 }

@@ -6,7 +6,7 @@ import "testing"
 func TestGetMove(t *testing.T) {
 	_, err := GetMove("pound")
 	if err != nil {
-		t.Error("Failed to get move by name")
+		t.Fatal("Failed to get move by name")
 	}
 }
 
@@ -14,6 +14,6 @@ func TestGetMove(t *testing.T) {
 func TestGetMoveList(t *testing.T) {
 	_, err := GetMoveList(20)
 	if err != nil {
-		t.Error("Failed to get move list")
+		t.Fatal("Failed to get move list")
 	}
 }
