@@ -3,25 +3,18 @@ package pokego
 import (
 	"encoding/json"
 	"fmt"
-	"io"
-	"net/http"
+	"log"
 )
 
 // GetPokemon returns a Pokemon struct containing information about the Pokemon with the given name.
 func GetPokemon(name string) (Pokemon, error) {
 	pokemon, err := getPokemonFromCache(name)
 	if err != nil {
-		var url = fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%v", name)
+		body, err := callApi(fmt.Sprintf("pokemon/%v", name))
 
-		req, err := http.NewRequest("GET", url, nil)
-
-		res, err := http.DefaultClient.Do(req)
-
-		defer func(Body io.ReadCloser) {
-			err = Body.Close()
-		}(res.Body)
-
-		body, err := io.ReadAll(res.Body)
+		if err != nil {
+			log.Fatal("Failed to call api")
+		}
 
 		err = json.Unmarshal(body, &pokemon)
 
@@ -39,17 +32,11 @@ func GetPokemon(name string) (Pokemon, error) {
 func GetPokemonList(limit int) (PokemonList, error) {
 	pokemonList, err := getPokemonListFromCache(limit)
 	if err != nil {
-		var url = fmt.Sprintf("https://pokeapi.co/api/v2/pokemon?limit=%v", limit)
+		body, err := callApi(fmt.Sprintf("pokemon?limit=%v", limit))
 
-		req, err := http.NewRequest("GET", url, nil)
-
-		res, err := http.DefaultClient.Do(req)
-
-		defer func(Body io.ReadCloser) {
-			err = Body.Close()
-		}(res.Body)
-
-		body, err := io.ReadAll(res.Body)
+		if err != nil {
+			log.Fatal("Failed to call api")
+		}
 
 		err = json.Unmarshal(body, &pokemonList)
 
