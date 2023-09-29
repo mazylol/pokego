@@ -3,25 +3,18 @@ package pokego
 import (
 	"encoding/json"
 	"fmt"
-	"io"
-	"net/http"
+	"log"
 )
 
 // GetMove returns a Move struct containing information about the Move with the given name.
 func GetMove(name string) (Move, error) {
 	move, err := getMoveFromCache(name)
 	if err != nil {
-		var url = fmt.Sprintf("https://pokeapi.co/api/v2/move/%v", name)
+		body, err := callApi(fmt.Sprintf("move/%v", name))
 
-		req, err := http.NewRequest("GET", url, nil)
-
-		res, err := http.DefaultClient.Do(req)
-
-		defer func(Body io.ReadCloser) {
-			err = Body.Close()
-		}(res.Body)
-
-		body, err := io.ReadAll(res.Body)
+		if err != nil {
+			log.Fatal("Failed to call api")
+		}
 
 		err = json.Unmarshal(body, &move)
 
@@ -39,17 +32,11 @@ func GetMove(name string) (Move, error) {
 func GetMoveList(limit int) (MoveList, error) {
 	moveList, err := getMoveListFromCache(limit)
 	if err != nil {
-		var url = fmt.Sprintf("https://pokeapi.co/api/v2/move?limit=%v", limit)
+		body, err := callApi(fmt.Sprintf("move?limit=%v", limit))
 
-		req, err := http.NewRequest("GET", url, nil)
-
-		res, err := http.DefaultClient.Do(req)
-
-		defer func(Body io.ReadCloser) {
-			err = Body.Close()
-		}(res.Body)
-
-		body, err := io.ReadAll(res.Body)
+		if err != nil {
+			log.Fatal("Failed to call api")
+		}
 
 		err = json.Unmarshal(body, &moveList)
 
