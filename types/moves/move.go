@@ -1,4 +1,4 @@
-package types
+package moves
 
 // Move represents a response from the PokeAPI containing information about a specific Move.
 type Move struct {

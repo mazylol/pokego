@@ -3,14 +3,14 @@ package pokego
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/mazylol/pokego/types/pokemon"
 	"log"
 
 	"github.com/mazylol/pokego/cache"
-	"github.com/mazylol/pokego/types"
 )
 
 // GetPokemon returns a Pokemon struct containing information about the Pokemon with the given name.
-func GetPokemon(name string) (types.Pokemon, error) {
+func GetPokemon(name string) (pokemon.Pokemon, error) {
 	pokemon, err := cache.GetPokemonFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon/%v", name))
@@ -32,7 +32,7 @@ func GetPokemon(name string) (types.Pokemon, error) {
 }
 
 // GetPokemonList returns a list of Pokemon names. You have to include a limit for the amount of names you want.
-func GetPokemonList(limit int) (types.PokemonList, error) {
+func GetPokemonList(limit int) (pokemon.PokemonList, error) {
 	pokemonList, err := cache.GetPokemonListFromCache(limit)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon?limit=%v", limit))
