@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func init() {
+func Initialize() {
 	if _, err := os.Stat("./pokego.db"); err == nil {
 		return
 	} else if errors.Is(err, os.ErrNotExist) {
