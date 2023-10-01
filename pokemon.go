@@ -3,15 +3,14 @@ package pokego
 import (
 	"encoding/json"
 	"fmt"
+	pokemon2 "github.com/mazylol/pokego/cache/pokemon"
 	"github.com/mazylol/pokego/types/pokemon"
 	"log"
-
-	"github.com/mazylol/pokego/cache"
 )
 
 // GetPokemon returns a Pokemon struct containing information about the Pokemon with the given name.
 func GetPokemon(name string) (pokemon.Pokemon, error) {
-	pokemon, err := cache.GetPokemonFromCache(name)
+	pokemon, err := pokemon2.GetPokemonFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon/%v", name))
 
@@ -22,7 +21,7 @@ func GetPokemon(name string) (pokemon.Pokemon, error) {
 		err = json.Unmarshal(body, &pokemon)
 
 		if err == nil {
-			err = cache.AddPokemonToCache(pokemon)
+			err = pokemon2.AddPokemonToCache(pokemon)
 		}
 
 		return pokemon, err
@@ -33,7 +32,7 @@ func GetPokemon(name string) (pokemon.Pokemon, error) {
 
 // GetPokemonList returns a list of Pokemon names. You have to include a limit for the amount of names you want.
 func GetPokemonList(limit int) (pokemon.PokemonList, error) {
-	pokemonList, err := cache.GetPokemonListFromCache(limit)
+	pokemonList, err := pokemon2.GetPokemonListFromCache(limit)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon?limit=%v", limit))
 
@@ -44,7 +43,7 @@ func GetPokemonList(limit int) (pokemon.PokemonList, error) {
 		err = json.Unmarshal(body, &pokemonList)
 
 		if err == nil {
-			err = cache.AddPokemonListToCache(pokemonList, limit)
+			err = pokemon2.AddPokemonListToCache(pokemonList, limit)
 		}
 
 		return pokemonList, err
