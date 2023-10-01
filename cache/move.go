@@ -3,14 +3,13 @@ package cache
 import (
 	"database/sql"
 	"encoding/json"
+	"github.com/mazylol/pokego/types/moves"
 	"log"
-
-	"github.com/mazylol/pokego/types"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func AddMoveToCache(move types.Move) error {
+func AddMoveToCache(move moves.Move) error {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -26,7 +25,7 @@ func AddMoveToCache(move types.Move) error {
 	return err
 }
 
-func GetMoveFromCache(name string) (types.Move, error) {
+func GetMoveFromCache(name string) (moves.Move, error) {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -35,7 +34,7 @@ func GetMoveFromCache(name string) (types.Move, error) {
 		err = db.Close()
 	}(db)
 
-	var move types.Move
+	var move moves.Move
 
 	row := db.QueryRow("SELECT data FROM move WHERE name = ?", name)
 
@@ -47,7 +46,7 @@ func GetMoveFromCache(name string) (types.Move, error) {
 	return move, err
 }
 
-func AddMoveListToCache(moveList types.MoveList, count int) error {
+func AddMoveListToCache(moveList moves.MoveList, count int) error {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -63,7 +62,7 @@ func AddMoveListToCache(moveList types.MoveList, count int) error {
 	return err
 }
 
-func GetMoveListFromCache(count int) (types.MoveList, error) {
+func GetMoveListFromCache(count int) (moves.MoveList, error) {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -72,7 +71,7 @@ func GetMoveListFromCache(count int) (types.MoveList, error) {
 		err = db.Close()
 	}(db)
 
-	var moveList types.MoveList
+	var moveList moves.MoveList
 
 	row := db.QueryRow("SELECT data FROM move_list WHERE count = ?", count)
 

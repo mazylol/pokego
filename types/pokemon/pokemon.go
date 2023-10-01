@@ -1,4 +1,4 @@
-package types
+package pokemon
 
 // Pokemon represents a response from the PokeAPI containing information about a specific Pokemon.
 type Pokemon struct {

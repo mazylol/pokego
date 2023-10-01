@@ -3,14 +3,13 @@ package cache
 import (
 	"database/sql"
 	"encoding/json"
+	"github.com/mazylol/pokego/types/pokemon"
 	"log"
-
-	"github.com/mazylol/pokego/types"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func AddPokemonToCache(pokemon types.Pokemon) error {
+func AddPokemonToCache(pokemon pokemon.Pokemon) error {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -26,7 +25,7 @@ func AddPokemonToCache(pokemon types.Pokemon) error {
 	return err
 }
 
-func GetPokemonFromCache(name string) (types.Pokemon, error) {
+func GetPokemonFromCache(name string) (pokemon.Pokemon, error) {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -35,7 +34,7 @@ func GetPokemonFromCache(name string) (types.Pokemon, error) {
 		err = db.Close()
 	}(db)
 
-	var pokemon types.Pokemon
+	var pokemon pokemon.Pokemon
 
 	row := db.QueryRow("SELECT data FROM pokemon WHERE name = ?", name)
 
@@ -47,7 +46,7 @@ func GetPokemonFromCache(name string) (types.Pokemon, error) {
 	return pokemon, err
 }
 
-func AddPokemonListToCache(pokemonList types.PokemonList, count int) error {
+func AddPokemonListToCache(pokemonList pokemon.PokemonList, count int) error {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -63,7 +62,7 @@ func AddPokemonListToCache(pokemonList types.PokemonList, count int) error {
 	return err
 }
 
-func GetPokemonListFromCache(count int) (types.PokemonList, error) {
+func GetPokemonListFromCache(count int) (pokemon.PokemonList, error) {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -72,7 +71,7 @@ func GetPokemonListFromCache(count int) (types.PokemonList, error) {
 		err = db.Close()
 	}(db)
 
-	var pokemonList types.PokemonList
+	var pokemonList pokemon.PokemonList
 
 	row := db.QueryRow("SELECT data FROM pokemon_list WHERE count = ?", count)
 
