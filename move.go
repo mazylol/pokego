@@ -10,7 +10,7 @@ import (
 
 // GetMove returns a Move struct containing information about the Move with the given name.
 func GetMove(name string) (moves.Move, error) {
-	move, err := moves2.GetMoveFromCache(name)
+	mov, err := moves2.GetMoveFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("move/%v", name))
 
@@ -18,15 +18,15 @@ func GetMove(name string) (moves.Move, error) {
 			log.Fatal("Failed to call api")
 		}
 
-		err = json.Unmarshal(body, &move)
+		err = json.Unmarshal(body, &mov)
 
 		if err == nil {
-			err = moves2.AddMoveToCache(move)
+			err = moves2.AddMoveToCache(mov)
 		}
 
-		return move, err
+		return mov, err
 	} else {
-		return move, err
+		return mov, err
 	}
 }
 
