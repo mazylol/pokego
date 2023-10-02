@@ -3,14 +3,14 @@ package pokego
 import (
 	"encoding/json"
 	"fmt"
-	pokemon2 "github.com/mazylol/pokego/cache/pokemon"
+	pokemonCache "github.com/mazylol/pokego/cache/pokemon"
 	"github.com/mazylol/pokego/types/pokemon"
 	"log"
 )
 
 // GetPokemon returns a Pokemon struct containing information about the Pokemon with the given name.
 func GetPokemon(name string) (pokemon.Pokemon, error) {
-	poke, err := pokemon2.GetPokemonFromCache(name)
+	poke, err := pokemonCache.GetPokemonFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon/%v", name))
 
@@ -21,7 +21,7 @@ func GetPokemon(name string) (pokemon.Pokemon, error) {
 		err = json.Unmarshal(body, &poke)
 
 		if err == nil {
-			err = pokemon2.AddPokemonToCache(poke)
+			err = pokemonCache.AddPokemonToCache(poke)
 		}
 
 		return poke, err
@@ -32,7 +32,7 @@ func GetPokemon(name string) (pokemon.Pokemon, error) {
 
 // GetPokemonList returns a list of Pokemon names. You have to include a limit for the amount of names you want.
 func GetPokemonList(limit int) (pokemon.PokemonList, error) {
-	pokemonList, err := pokemon2.GetPokemonListFromCache(limit)
+	pokemonList, err := pokemonCache.GetPokemonListFromCache(limit)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon?limit=%v", limit))
 
@@ -43,7 +43,7 @@ func GetPokemonList(limit int) (pokemon.PokemonList, error) {
 		err = json.Unmarshal(body, &pokemonList)
 
 		if err == nil {
-			err = pokemon2.AddPokemonListToCache(pokemonList, limit)
+			err = pokemonCache.AddPokemonListToCache(pokemonList, limit)
 		}
 
 		return pokemonList, err
@@ -54,7 +54,7 @@ func GetPokemonList(limit int) (pokemon.PokemonList, error) {
 
 // GetAbility returns an Ability struct containing information about the Ability with the given name.
 func GetAbility(name string) (pokemon.Ability, error) {
-	ability, err := pokemon2.GetAbilityFromCache(name)
+	ability, err := pokemonCache.GetAbilityFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("ability/%v", name))
 
@@ -65,7 +65,7 @@ func GetAbility(name string) (pokemon.Ability, error) {
 		err = json.Unmarshal(body, &ability)
 
 		if err == nil {
-			err = pokemon2.AddAbilityToCache(ability)
+			err = pokemonCache.AddAbilityToCache(ability)
 		}
 
 		return ability, err
@@ -76,7 +76,7 @@ func GetAbility(name string) (pokemon.Ability, error) {
 
 // GetAbilityList returns a list of Ability names. You have to include a limit for the amount of names you want.
 func GetAbilityList(limit int) (pokemon.AbilityList, error) {
-	abilityList, err := pokemon2.GetAbilityListFromCache(limit)
+	abilityList, err := pokemonCache.GetAbilityListFromCache(limit)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("ability?limit=%v", limit))
 
@@ -87,7 +87,7 @@ func GetAbilityList(limit int) (pokemon.AbilityList, error) {
 		err = json.Unmarshal(body, &abilityList)
 
 		if err == nil {
-			err = pokemon2.AddAbilityListToCache(abilityList, limit)
+			err = pokemonCache.AddAbilityListToCache(abilityList, limit)
 		}
 
 		return abilityList, err
