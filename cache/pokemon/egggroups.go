@@ -9,7 +9,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func AddAbilityToCache(ability pokemon.Ability) error {
+func AddEggGroupToCache(eggGroup pokemon.EggGroup) error {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -18,14 +18,14 @@ func AddAbilityToCache(ability pokemon.Ability) error {
 		err = db.Close()
 	}(db)
 
-	jayson, err := json.Marshal(&ability)
+	jayson, err := json.Marshal(&eggGroup)
 
-	_, err = db.Exec("INSERT INTO ability (name, data) VALUES (?, ?)", ability.Name, string(jayson))
+	_, err = db.Exec("INSERT INTO egg_group (name, data) VALUES (?, ?)", eggGroup.Name, string(jayson))
 
 	return err
 }
 
-func GetAbilityFromCache(name string) (pokemon.Ability, error) {
+func GetEggGroupFromCache(name string) (pokemon.EggGroup, error) {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -34,14 +34,14 @@ func GetAbilityFromCache(name string) (pokemon.Ability, error) {
 		err = db.Close()
 	}(db)
 
-	var ability pokemon.Ability
+	var eggGroup pokemon.EggGroup
 
-	row := db.QueryRow("SELECT data FROM ability WHERE name = ?", name)
+	row := db.QueryRow("SELECT data FROM egg_group WHERE name = ?", name)
 
 	var data string
 	err = row.Scan(&data)
 
-	err = json.Unmarshal([]byte(data), &ability)
+	err = json.Unmarshal([]byte(data), &eggGroup)
 
-	return ability, err
+	return eggGroup, err
 }

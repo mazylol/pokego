@@ -52,6 +52,50 @@ func GetCharacteristic(id int) (pokemon.Characteristic, error) {
 	}
 }
 
+// GetEggGroup returns an EggGroup struct containing information about the EggGroup with the given name.
+func GetEggGroup(name string) (pokemon.EggGroup, error) {
+	eggGroup, err := pokemonCache.GetEggGroupFromCache(name)
+	if err != nil {
+		body, err := callApi(fmt.Sprintf("egg-group/%v", name))
+
+		if err != nil {
+			log.Fatal("Failed to call api")
+		}
+
+		err = json.Unmarshal(body, &eggGroup)
+
+		if err == nil {
+			err = pokemonCache.AddEggGroupToCache(eggGroup)
+		}
+
+		return eggGroup, err
+	} else {
+		return eggGroup, err
+	}
+}
+
+// GetGender returns a Gender struct containing information about the EggGroup with the given name.
+func GetGender(name string) (pokemon.Gender, error) {
+	gender, err := pokemonCache.GetGenderFromCache(name)
+	if err != nil {
+		body, err := callApi(fmt.Sprintf("gender/%v", name))
+
+		if err != nil {
+			log.Fatal("Failed to call api")
+		}
+
+		err = json.Unmarshal(body, &gender)
+
+		if err == nil {
+			err = pokemonCache.AddGenderToCache(gender)
+		}
+
+		return gender, err
+	} else {
+		return gender, err
+	}
+}
+
 // GetPokemon returns a Pokemon struct containing information about the Pokemon with the given name.
 func GetPokemon(name string) (pokemon.Pokemon, error) {
 	poke, err := pokemonCache.GetPokemonFromCache(name)
