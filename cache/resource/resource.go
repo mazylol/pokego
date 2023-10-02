@@ -7,6 +7,8 @@ import (
 	"github.com/mazylol/pokego/types/resource"
 	"log"
 	"strings"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func getTableName(endpoint string) string {
@@ -40,7 +42,7 @@ func GetResourceListFromCache(endpoint string, count int) (resource.List, error)
 
 	var resourceList resource.List
 
-	row := db.QueryRow("SELECT data FROM ? WHERE count = ?", getTableName(endpoint), count)
+	row := db.QueryRow(fmt.Sprintf("SELECT data FROM %s WHERE count = ?", getTableName(endpoint)), count)
 
 	var data string
 	err = row.Scan(&data)
