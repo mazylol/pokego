@@ -34,14 +34,14 @@ func GetPokemonFromCache(name string) (pokemon.Pokemon, error) {
 		err = db.Close()
 	}(db)
 
-	var pokemon pokemon.Pokemon
+	var poki pokemon.Pokemon
 
 	row := db.QueryRow("SELECT data FROM pokemon WHERE name = ?", name)
 
 	var data string
 	err = row.Scan(&data)
 
-	err = json.Unmarshal([]byte(data), &pokemon)
+	err = json.Unmarshal([]byte(data), &poki)
 
-	return pokemon, err
+	return poki, err
 }
