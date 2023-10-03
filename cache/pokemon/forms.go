@@ -3,8 +3,9 @@ package pokemon
 import (
 	"database/sql"
 	"encoding/json"
-	"github.com/mazylol/pokego/types/pokemon"
 	"log"
+
+	"github.com/mazylol/pokego/types/pokemon"
 )
 
 func AddFormToCache(form pokemon.Form) error {
@@ -36,10 +37,10 @@ func GetFormFromCache(name string) (pokemon.Form, error) {
 
 	row := db.QueryRow("SELECT data FROM pokemon_form WHERE name = ?", name)
 
-	var data string
+	var data []byte
 	err = row.Scan(&data)
 
-	err = json.Unmarshal([]byte(data), &form)
+	err = json.Unmarshal(data, &form)
 
 	return form, err
 }

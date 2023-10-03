@@ -3,8 +3,9 @@ package moves
 import (
 	"database/sql"
 	"encoding/json"
-	"github.com/mazylol/pokego/types/moves"
 	"log"
+
+	"github.com/mazylol/pokego/types/moves"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -38,10 +39,10 @@ func GetMoveFromCache(name string) (moves.Move, error) {
 
 	row := db.QueryRow("SELECT data FROM move WHERE name = ?", name)
 
-	var data string
+	var data []byte
 	err = row.Scan(&data)
 
-	err = json.Unmarshal([]byte(data), &move)
+	err = json.Unmarshal(data, &move)
 
 	return move, err
 }

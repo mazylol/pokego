@@ -3,8 +3,9 @@ package pokemon
 import (
 	"database/sql"
 	"encoding/json"
-	"github.com/mazylol/pokego/types/pokemon"
 	"log"
+
+	"github.com/mazylol/pokego/types/pokemon"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -38,10 +39,10 @@ func GetAbilityFromCache(name string) (pokemon.Ability, error) {
 
 	row := db.QueryRow("SELECT data FROM ability WHERE name = ?", name)
 
-	var data string
+	var data []byte
 	err = row.Scan(&data)
 
-	err = json.Unmarshal([]byte(data), &ability)
+	err = json.Unmarshal(data, &ability)
 
 	return ability, err
 }

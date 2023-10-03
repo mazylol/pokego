@@ -3,8 +3,9 @@ package pokemon
 import (
 	"database/sql"
 	"encoding/json"
-	"github.com/mazylol/pokego/types/pokemon"
 	"log"
+
+	"github.com/mazylol/pokego/types/pokemon"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -38,10 +39,10 @@ func GetHabitatFromCache(name string) (pokemon.Habitat, error) {
 
 	row := db.QueryRow("SELECT data FROM pokemon_habitat WHERE name = ?", name)
 
-	var data string
+	var data []byte
 	err = row.Scan(&data)
 
-	err = json.Unmarshal([]byte(data), &habitat)
+	err = json.Unmarshal(data, &habitat)
 
 	return habitat, err
 }

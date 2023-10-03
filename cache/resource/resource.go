@@ -4,9 +4,10 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"github.com/mazylol/pokego/types/resource"
 	"log"
 	"strings"
+
+	"github.com/mazylol/pokego/types/resource"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -44,10 +45,10 @@ func GetResourceListFromCache(endpoint string, count int) (resource.List, error)
 
 	row := db.QueryRow(fmt.Sprintf("SELECT data FROM %s WHERE count = ?", getTableName(endpoint)), count)
 
-	var data string
+	var data []byte
 	err = row.Scan(&data)
 
-	err = json.Unmarshal([]byte(data), &resourceList)
+	err = json.Unmarshal(data, &resourceList)
 
 	return resourceList, err
 }
