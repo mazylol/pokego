@@ -20,6 +20,22 @@ func TestGetCharacteristic(t *testing.T) {
 	}
 }
 
+// TestGetEggGroup tests the GetEggGroup function.
+func TestGetEggGroup(t *testing.T) {
+	_, err := GetEggGroup("monster")
+	if err != nil {
+		t.Fatal("Failed to get egg group by name")
+	}
+}
+
+// TestGetGender tests the GetGender function.
+func TestGetGender(t *testing.T) {
+	_, err := GetGender("female")
+	if err != nil {
+		t.Fatal("Failed to get gender by name")
+	}
+}
+
 // TestGetPokemon tests the GetPokemon function.
 func TestGetPokemon(t *testing.T) {
 	_, err := GetPokemon("slugma")
