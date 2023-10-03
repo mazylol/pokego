@@ -8,8 +8,8 @@ import (
 	"log"
 )
 
-// GetAbility returns an Ability struct containing information about the Ability with the given name.
-func GetAbility(name string) (pokemon.Ability, error) {
+// GetPokemonAbility returns an Ability struct containing information about the Ability with the given name.
+func GetPokemonAbility(name string) (pokemon.Ability, error) {
 	ability, err := pokemonCache.GetAbilityFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("ability/%v", name))
@@ -30,8 +30,8 @@ func GetAbility(name string) (pokemon.Ability, error) {
 	}
 }
 
-// GetCharacteristic returns a Characteristic struct containing information about the Characteristic with the given id.
-func GetCharacteristic(id int) (pokemon.Characteristic, error) {
+// GetPokemonCharacteristic returns a Characteristic struct containing information about the Characteristic with the given id.
+func GetPokemonCharacteristic(id int) (pokemon.Characteristic, error) {
 	characteristic, err := pokemonCache.GetCharacteristicFromCache(id)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("characteristic/%v", id))
@@ -52,8 +52,8 @@ func GetCharacteristic(id int) (pokemon.Characteristic, error) {
 	}
 }
 
-// GetEggGroup returns an EggGroup struct containing information about the EggGroup with the given name.
-func GetEggGroup(name string) (pokemon.EggGroup, error) {
+// GetPokemonEggGroup returns an EggGroup struct containing information about the EggGroup with the given name.
+func GetPokemonEggGroup(name string) (pokemon.EggGroup, error) {
 	eggGroup, err := pokemonCache.GetEggGroupFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("egg-group/%v", name))
@@ -74,8 +74,8 @@ func GetEggGroup(name string) (pokemon.EggGroup, error) {
 	}
 }
 
-// GetGender returns a Gender struct containing information about the EggGroup with the given name.
-func GetGender(name string) (pokemon.Gender, error) {
+// GetPokemonGender returns a Gender struct containing information about the EggGroup with the given name.
+func GetPokemonGender(name string) (pokemon.Gender, error) {
 	gender, err := pokemonCache.GetGenderFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("gender/%v", name))
@@ -96,8 +96,8 @@ func GetGender(name string) (pokemon.Gender, error) {
 	}
 }
 
-// GetGrowthRate returns a GrowthRate struct containing information about the GrowthRate with the given name.
-func GetGrowthRate(name string) (pokemon.GrowthRate, error) {
+// GetPokemonGrowthRate returns a GrowthRate struct containing information about the GrowthRate with the given name.
+func GetPokemonGrowthRate(name string) (pokemon.GrowthRate, error) {
 	growthRate, err := pokemonCache.GetGrowthRateFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("growth-rate/%v", name))
@@ -118,8 +118,8 @@ func GetGrowthRate(name string) (pokemon.GrowthRate, error) {
 	}
 }
 
-// GetNature returns a Nature struct containing information about the Nature with the given name.
-func GetNature(name string) (pokemon.Nature, error) {
+// GetPokemonNature returns a Nature struct containing information about the Nature with the given name.
+func GetPokemonNature(name string) (pokemon.Nature, error) {
 	nature, err := pokemonCache.GetNatureFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("nature/%v", name))
@@ -140,8 +140,8 @@ func GetNature(name string) (pokemon.Nature, error) {
 	}
 }
 
-// GetPokeathlonStat returns a PokeathlonStat struct containing information about the PokeathlonStat with the given name.
-func GetPokeathlonStat(name string) (pokemon.PokeathlonStat, error) {
+// GetPokemonPokeathlonStats returns a PokeathlonStat struct containing information about the PokeathlonStat with the given name.
+func GetPokemonPokeathlonStats(name string) (pokemon.PokeathlonStat, error) {
 	pokeathlonStat, err := pokemonCache.GetPokeathlonStatFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokeathlon-stat/%v", name))
@@ -184,8 +184,8 @@ func GetPokemon(name string) (pokemon.Pokemon, error) {
 	}
 }
 
-// GetLocationArea GetPokemonLocationArea returns a PokemonLocationArea struct containing information about the PokemonLocationArea with the given name.
-func GetLocationArea(name string) ([]pokemon.LocationArea, error) {
+// GetPokemonLocationArea returns a PokemonLocationArea struct containing information about the PokemonLocationArea with the given name.
+func GetPokemonLocationArea(name string) ([]pokemon.LocationArea, error) {
 	locationArea, err := pokemonCache.GetLocationAreaFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon/%v/encounters", name))
@@ -206,8 +206,8 @@ func GetLocationArea(name string) ([]pokemon.LocationArea, error) {
 	}
 }
 
-// GetColor returns a Color struct containing information about the Color with the given name.
-func GetColor(name string) (pokemon.Color, error) {
+// GetPokemonColor returns a Color struct containing information about the Color with the given name.
+func GetPokemonColor(name string) (pokemon.Color, error) {
 	color, err := pokemonCache.GetColorFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon-color/%v", name))
@@ -228,8 +228,8 @@ func GetColor(name string) (pokemon.Color, error) {
 	}
 }
 
-// GetForm returns a Form struct containing information about the Form with the given name.
-func GetForm(name string) (pokemon.Form, error) {
+// GetPokemonForm returns a Form struct containing information about the Form with the given name.
+func GetPokemonForm(name string) (pokemon.Form, error) {
 	form, err := pokemonCache.GetFormFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon-form/%v", name))
@@ -250,8 +250,8 @@ func GetForm(name string) (pokemon.Form, error) {
 	}
 }
 
-// GetHabitat returns a Habitat struct containing information about the Habitat with the given name.
-func GetHabitat(name string) (pokemon.Habitat, error) {
+// GetPokemonHabitat returns a Habitat struct containing information about the Habitat with the given name.
+func GetPokemonHabitat(name string) (pokemon.Habitat, error) {
 	habitat, err := pokemonCache.GetHabitatFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon-habitat/%v", name))
@@ -272,8 +272,8 @@ func GetHabitat(name string) (pokemon.Habitat, error) {
 	}
 }
 
-// GetShape returns a Shape struct containing information about the Shape with the given name.
-func GetShape(name string) (pokemon.Shape, error) {
+// GetPokemonShape returns a Shape struct containing information about the Shape with the given name.
+func GetPokemonShape(name string) (pokemon.Shape, error) {
 	shape, err := pokemonCache.GetShapeFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon-shape/%v", name))
@@ -294,8 +294,8 @@ func GetShape(name string) (pokemon.Shape, error) {
 	}
 }
 
-// GetSpecies returns a Species struct containing information about the Species with the given name.
-func GetSpecies(name string) (pokemon.Species, error) {
+// GetPokemonSpecies returns a Species struct containing information about the Species with the given name.
+func GetPokemonSpecies(name string) (pokemon.Species, error) {
 	species, err := pokemonCache.GetSpeciesFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("pokemon-species/%v", name))
@@ -316,8 +316,8 @@ func GetSpecies(name string) (pokemon.Species, error) {
 	}
 }
 
-// GetStat returns a Stat struct containing information about the Stat with the given name.
-func GetStat(name string) (pokemon.Stat, error) {
+// GetPokemonStat returns a Stat struct containing information about the Stat with the given name.
+func GetPokemonStat(name string) (pokemon.Stat, error) {
 	stat, err := pokemonCache.GetStatFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("stat/%v", name))
@@ -338,8 +338,8 @@ func GetStat(name string) (pokemon.Stat, error) {
 	}
 }
 
-// GetType returns a Type struct containing information about the Type with the given name.
-func GetType(name string) (pokemon.Type, error) {
+// GetPokemonType returns a Type struct containing information about the Type with the given name.
+func GetPokemonType(name string) (pokemon.Type, error) {
 	tipe, err := pokemonCache.GetTypeFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("type/%v", name))
