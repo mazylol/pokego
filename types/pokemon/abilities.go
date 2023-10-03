@@ -78,23 +78,3 @@ type Ability struct {
 		} `json:"pokemon"`
 	} `json:"pokemon"`
 }
-
-type AbilityList struct {
-	// The total count of abilities in the list.
-	Count int `json:"count"`
-
-	// URL to the next page of abilities (if available).
-	Next string `json:"next"`
-
-	// URL to the previous page of abilities (if available).
-	Previous interface{} `json:"previous"`
-
-	// An array of ability names and their corresponding URLs.
-	Results []struct {
-		// The name of the ability.
-		Name string `json:"name"`
-
-		// The URL to access detailed information about the ability.
-		Url string `json:"url"`
-	} `json:"results"`
-}
