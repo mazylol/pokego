@@ -1,4 +1,4 @@
-package cache
+package moves
 
 import (
 	"database/sql"

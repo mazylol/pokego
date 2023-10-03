@@ -1,4 +1,4 @@
-package cache
+package pokemon
 
 import (
 	"database/sql"

@@ -3,15 +3,14 @@ package pokego
 import (
 	"encoding/json"
 	"fmt"
+	movesCache "github.com/mazylol/pokego/cache/moves"
 	"github.com/mazylol/pokego/types/moves"
 	"log"
-
-	"github.com/mazylol/pokego/cache"
 )
 
 // GetMove returns a Move struct containing information about the Move with the given name.
 func GetMove(name string) (moves.Move, error) {
-	move, err := cache.GetMoveFromCache(name)
+	mov, err := movesCache.GetMoveFromCache(name)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("move/%v", name))
 
@@ -19,21 +18,21 @@ func GetMove(name string) (moves.Move, error) {
 			log.Fatal("Failed to call api")
 		}
 
-		err = json.Unmarshal(body, &move)
+		err = json.Unmarshal(body, &mov)
 
 		if err == nil {
-			err = cache.AddMoveToCache(move)
+			err = movesCache.AddMoveToCache(mov)
 		}
 
-		return move, err
+		return mov, err
 	} else {
-		return move, err
+		return mov, err
 	}
 }
 
 // GetMoveList returns a list of Move names. You have to include a limit for the amount of names you want.
 func GetMoveList(limit int) (moves.MoveList, error) {
-	moveList, err := cache.GetMoveListFromCache(limit)
+	moveList, err := movesCache.GetMoveListFromCache(limit)
 	if err != nil {
 		body, err := callApi(fmt.Sprintf("move?limit=%v", limit))
 
@@ -44,7 +43,7 @@ func GetMoveList(limit int) (moves.MoveList, error) {
 		err = json.Unmarshal(body, &moveList)
 
 		if err == nil {
-			err = cache.AddMoveListToCache(moveList, limit)
+			err = movesCache.AddMoveListToCache(moveList, limit)
 		}
 
 		return moveList, err
