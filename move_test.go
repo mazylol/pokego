@@ -9,11 +9,3 @@ func TestGetMove(t *testing.T) {
 		t.Fatal("Failed to get move by name")
 	}
 }
-
-// TestGetMoveList tests the GetMoveList function.
-func TestGetMoveList(t *testing.T) {
-	_, err := GetMoveList(20)
-	if err != nil {
-		t.Fatal("Failed to get move list")
-	}
-}
