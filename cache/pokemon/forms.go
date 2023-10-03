@@ -5,11 +5,9 @@ import (
 	"encoding/json"
 	"github.com/mazylol/pokego/types/pokemon"
 	"log"
-
-	_ "github.com/mattn/go-sqlite3"
 )
 
-func AddPokemonToCache(pokemon pokemon.Pokemon) error {
+func AddFormToCache(form pokemon.Form) error {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -18,14 +16,14 @@ func AddPokemonToCache(pokemon pokemon.Pokemon) error {
 		err = db.Close()
 	}(db)
 
-	jayson, err := json.Marshal(&pokemon)
+	jayson, err := json.Marshal(&form)
 
-	_, err = db.Exec("INSERT INTO pokemon (name, data) VALUES (?, ?)", pokemon.Name, string(jayson))
+	_, err = db.Exec("INSERT INTO pokemon_form (name, data) VALUES (?, ?)", form.Name, string(jayson))
 
 	return err
 }
 
-func GetPokemonFromCache(name string) (pokemon.Pokemon, error) {
+func GetFormFromCache(name string) (pokemon.Form, error) {
 	db, err := sql.Open("sqlite3", "./pokego.db")
 	if err != nil {
 		log.Fatal(err)
@@ -34,14 +32,14 @@ func GetPokemonFromCache(name string) (pokemon.Pokemon, error) {
 		err = db.Close()
 	}(db)
 
-	var poki pokemon.Pokemon
+	var form pokemon.Form
 
-	row := db.QueryRow("SELECT data FROM pokemon WHERE name = ?", name)
+	row := db.QueryRow("SELECT data FROM pokemon_form WHERE name = ?", name)
 
 	var data string
 	err = row.Scan(&data)
 
-	err = json.Unmarshal([]byte(data), &poki)
+	err = json.Unmarshal([]byte(data), &form)
 
-	return poki, err
+	return form, err
 }
