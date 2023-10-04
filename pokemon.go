@@ -3,9 +3,10 @@ package pokego
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+
 	pokemonCache "github.com/mazylol/pokego/cache/pokemon"
 	"github.com/mazylol/pokego/types/pokemon"
-	"log"
 )
 
 // GetPokemonAbility returns an Ability struct containing information about the Ability with the given name.

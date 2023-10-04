@@ -3,9 +3,10 @@ package pokego
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+
 	movesCache "github.com/mazylol/pokego/cache/moves"
 	"github.com/mazylol/pokego/types/moves"
-	"log"
 )
 
 // GetMove returns a Move struct containing information about the Move with the given name.

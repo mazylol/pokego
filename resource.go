@@ -2,9 +2,10 @@ package pokego
 
 import (
 	"encoding/json"
+	"log"
+
 	resourceCache "github.com/mazylol/pokego/cache/resource"
 	"github.com/mazylol/pokego/types/resource"
-	"log"
 )
 
 // GetResourceList returns a ResourceList struct containing information about the list of resources with the given name.
