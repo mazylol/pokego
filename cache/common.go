@@ -106,7 +106,11 @@ func create() {
 
 		CREATE TABLE IF NOT EXISTS move (name VARCHAR(50) PRIMARY KEY, data TEXT[] NOT NULL);
 		CREATE TABLE IF NOT EXISTS move_ailment (name VARCHAR(50) PRIMARY KEY, data TEXT[] NOT NULL);
-
+		CREATE TABLE IF NOT EXISTS move_battle_style (name VARCHAR(50) PRIMARY KEY, data TEXT[] NOT NULL);
+		CREATE TABLE IF NOT EXISTS move_category (name VARCHAR(50) PRIMARY KEY, data TEXT[] NOT NULL);
+		CREATE TABLE IF NOT EXISTS move_damage_class (name VARCHAR(50) PRIMARY KEY, data TEXT[] NOT NULL);
+		CREATE TABLE IF NOT EXISTS move_learn_method (name VARCHAR(50) PRIMARY KEY, data TEXT[] NOT NULL);
+		CREATE TABLE IF NOT EXISTS move_target (name VARCHAR(50) PRIMARY KEY, data TEXT[] NOT NULL);
 `
 
 	_, err = db.Exec(sqlStmt)
