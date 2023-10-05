@@ -29,22 +29,27 @@ fmt.Println(pokemon.Name)
 
 You can also get a list of every Pokemon name.
 ```go
-pokemonList, err := pokego.GetPokemonList(35) // 35 is how many pokemon it will get
+pokemonList, err := pokego.GetResourceList("pokemon", 35) // 35 is how many pokemon it will get
 	
 // Print out the first Pokemons name
 fmt.Println(pokemonList.Results[0].Name)
 ```
 
 ## Features
-- [x] Moves
-- [ ] Abilities
-- [x] Pokémon (including various forms)
-- [ ] Types
-- [ ] Egg Groups
-- [ ] Game Versions
+- [x] Resource Lists/Pagination
+---
+- [ ] Berries
+- [ ] Contests
+- [ ] Encounters
+- [ ] Evolution
+- [ ] Games
 - [ ] Items
-- [ ] Pokédexes
-- [ ] Pokémon Evolution Chains
+- [ ] Locations
+- [ ] Machines
+- [x] Moves
+- [x] Pokemon
+---
+- [ ] Utility
 
 ## Contributions <3
 Contributors are very welcome. I still have a lot of ground to cover and any help is greatly appreciated. Refer to the features to see what needs done.
