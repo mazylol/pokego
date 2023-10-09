@@ -38,7 +38,7 @@ fmt.Println(pokemonList.Results[0].Name)
 ## Features
 - [x] Resource Lists/Pagination
 ---
-- [ ] Berries
+- [x] Berries
 - [ ] Contests
 - [ ] Encounters
 - [ ] Evolution
