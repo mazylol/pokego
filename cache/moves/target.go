@@ -3,8 +3,9 @@ package moves
 import (
 	"database/sql"
 	"encoding/json"
-	"github.com/mazylol/pokego/types/moves"
 	"log"
+
+	"github.com/mazylol/pokego/types/moves"
 
 	_ "github.com/mattn/go-sqlite3"
 )
