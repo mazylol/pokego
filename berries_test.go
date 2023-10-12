@@ -6,7 +6,7 @@ import "testing"
 func TestGetBerry(t *testing.T) {
 	_, err := GetBerry("cheri")
 	if err != nil {
-		t.Fatal("Failed to get berry by name")
+		t.Errorf("GetBerry(\"cheri\") failed with error: %v", err)
 	}
 }
 
@@ -14,7 +14,7 @@ func TestGetBerry(t *testing.T) {
 func TestGetBerryFirmness(t *testing.T) {
 	_, err := GetBerryFirmness("very-soft")
 	if err != nil {
-		t.Fatal("Failed to get berry firmness by name")
+		t.Errorf("GetBerryFirmness(\"very-soft\") failed with error: %v", err)
 	}
 }
 
@@ -22,6 +22,6 @@ func TestGetBerryFirmness(t *testing.T) {
 func TestGetBerryFlavor(t *testing.T) {
 	_, err := GetBerryFlavor("spicy")
 	if err != nil {
-		t.Fatal("Failed to get berry flavor by name")
+		t.Errorf("GetBerryFlavor(\"spicy\") failed with error: %v", err)
 	}
 }
