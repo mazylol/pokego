@@ -8,7 +8,7 @@ import (
 func TestGetAbility(t *testing.T) {
 	_, err := GetPokemonAbility("stench")
 	if err != nil {
-		t.Fatal("Failed to get ability by name")
+		t.Errorf("GetPokemonAbility(\"stench\") failed with error: %v", err)
 	}
 }
 
@@ -16,7 +16,7 @@ func TestGetAbility(t *testing.T) {
 func TestGetCharacteristic(t *testing.T) {
 	_, err := GetPokemonCharacteristic(1)
 	if err != nil {
-		t.Fatal("Failed to get characteristic by id")
+		t.Errorf("GetPokemonCharacteristic(1) failed with error: %v", err)
 	}
 }
 
@@ -24,7 +24,7 @@ func TestGetCharacteristic(t *testing.T) {
 func TestGetEggGroup(t *testing.T) {
 	_, err := GetPokemonEggGroup("monster")
 	if err != nil {
-		t.Fatal("Failed to get egg group by name")
+		t.Errorf("GetPokemonEggGroup(\"monster\") failed with error: %v", err)
 	}
 }
 
@@ -32,7 +32,7 @@ func TestGetEggGroup(t *testing.T) {
 func TestGetGender(t *testing.T) {
 	_, err := GetPokemonGender("female")
 	if err != nil {
-		t.Fatal("Failed to get gender by name")
+		t.Errorf("GetPokemonGender(\"female\") failed with error: %v", err)
 	}
 }
 
@@ -40,7 +40,7 @@ func TestGetGender(t *testing.T) {
 func TestGetGrowthRate(t *testing.T) {
 	_, err := GetPokemonGrowthRate("slow")
 	if err != nil {
-		t.Fatal("Failed to get growth rate by name")
+		t.Errorf("GetPokemonGrowthRate(\"slow\") failed with error: %v", err)
 	}
 }
 
@@ -48,7 +48,7 @@ func TestGetGrowthRate(t *testing.T) {
 func TestGetNature(t *testing.T) {
 	_, err := GetPokemonNature("adamant")
 	if err != nil {
-		t.Fatal("Failed to get nature by name")
+		t.Errorf("GetPokemonNature(\"adamant\") failed with error: %v", err)
 	}
 }
 
@@ -56,7 +56,7 @@ func TestGetNature(t *testing.T) {
 func TestGetPokeathlonStat(t *testing.T) {
 	_, err := GetPokemonPokeathlonStats("speed")
 	if err != nil {
-		t.Fatal("Failed to get pokeathlon stat by name")
+		t.Errorf("GetPokemonPokeathlonStats(\"speed\") failed with error: %v", err)
 	}
 }
 
@@ -64,7 +64,7 @@ func TestGetPokeathlonStat(t *testing.T) {
 func TestGetPokemon(t *testing.T) {
 	_, err := GetPokemon("slugma")
 	if err != nil {
-		t.Fatal("Failed to get pokemon by name")
+		t.Errorf("GetPokemon(\"slugma\") failed with error: %v", err)
 	}
 }
 
@@ -72,7 +72,7 @@ func TestGetPokemon(t *testing.T) {
 func TestGetLocationArea(t *testing.T) {
 	_, err := GetPokemonLocationArea("pikachu")
 	if err != nil {
-		t.Fatal("Failed to get pokemon location area by name")
+		t.Errorf("GetPokemonLocationArea(\"pikachu\") failed with error: %v", err)
 	}
 }
 
@@ -80,7 +80,7 @@ func TestGetLocationArea(t *testing.T) {
 func TestGetColor(t *testing.T) {
 	_, err := GetPokemonColor("red")
 	if err != nil {
-		t.Fatal("Failed to get pokemon color by name")
+		t.Errorf("GetPokemonColor(\"red\") failed with error: %v", err)
 	}
 }
 
@@ -88,7 +88,7 @@ func TestGetColor(t *testing.T) {
 func TestGetForm(t *testing.T) {
 	_, err := GetPokemonForm("arceus-bug")
 	if err != nil {
-		t.Fatal("Failed to get pokemon form by name")
+		t.Errorf("GetPokemonForm(\"arceus-bug\") failed with error: %v", err)
 	}
 }
 
@@ -96,7 +96,7 @@ func TestGetForm(t *testing.T) {
 func TestGetHabitat(t *testing.T) {
 	_, err := GetPokemonHabitat("cave")
 	if err != nil {
-		t.Fatal("Failed to get pokemon habitat by name")
+		t.Errorf("GetPokemonHabitat(\"cave\") failed with error: %v", err)
 	}
 }
 
@@ -104,7 +104,7 @@ func TestGetHabitat(t *testing.T) {
 func TestGetShape(t *testing.T) {
 	_, err := GetPokemonShape("ball")
 	if err != nil {
-		t.Fatal("Failed to get pokemon shape by name")
+		t.Errorf("GetPokemonShape(\"ball\") failed with error: %v", err)
 	}
 }
 
@@ -112,7 +112,7 @@ func TestGetShape(t *testing.T) {
 func TestGetPokemonSpecies(t *testing.T) {
 	_, err := GetPokemonSpecies("slugma")
 	if err != nil {
-		t.Fatal("Failed to get pokemon species by name")
+		t.Errorf("GetPokemonSpecies(\"slugma\") failed with error: %v", err)
 	}
 }
 
@@ -120,7 +120,7 @@ func TestGetPokemonSpecies(t *testing.T) {
 func TestGetStat(t *testing.T) {
 	_, err := GetPokemonStat("speed")
 	if err != nil {
-		t.Fatal("Failed to get stat by name")
+		t.Errorf("GetPokemonStat(\"speed\") failed with error: %v", err)
 	}
 }
 
@@ -128,6 +128,6 @@ func TestGetStat(t *testing.T) {
 func TestGetType(t *testing.T) {
 	_, err := GetPokemonType("fire")
 	if err != nil {
-		t.Fatal("Failed to get type by name")
+		t.Errorf("GetPokemonType(\"fire\") failed with error: %v", err)
 	}
 }

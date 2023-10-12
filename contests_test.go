@@ -6,7 +6,7 @@ import "testing"
 func TestGetContestType(t *testing.T) {
 	_, err := GetContestType("cool")
 	if err != nil {
-		t.Fatal("Failed to get contest type")
+		t.Errorf("GetContestType(\"cool\") failed with error: %v", err)
 	}
 }
 
@@ -14,7 +14,7 @@ func TestGetContestType(t *testing.T) {
 func TestGetContestEffect(t *testing.T) {
 	_, err := GetContestEffect(1)
 	if err != nil {
-		t.Fatal("Failed to get contest effect")
+		t.Errorf("GetContestEffect(1) failed with error: %v", err)
 	}
 }
 
@@ -22,6 +22,6 @@ func TestGetContestEffect(t *testing.T) {
 func TestGetSuperContestEffect(t *testing.T) {
 	_, err := GetSuperContestEffect(1)
 	if err != nil {
-		t.Fatal("Failed to get super contest effect")
+		t.Errorf("GetSuperContestEffect(1) failed with error: %v", err)
 	}
 }

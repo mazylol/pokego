@@ -6,7 +6,7 @@ import "testing"
 func TestGetMove(t *testing.T) {
 	_, err := GetMove("pound")
 	if err != nil {
-		t.Fatal("Failed to get move by name")
+		t.Errorf("GetMove(\"pound\") failed with error: %v", err)
 	}
 }
 
@@ -14,7 +14,7 @@ func TestGetMove(t *testing.T) {
 func TestGetAilment(t *testing.T) {
 	_, err := GetAilment("paralysis")
 	if err != nil {
-		t.Fatal("Failed to get move ailment by name")
+		t.Errorf("GetAilment(\"paralysis\") failed with error: %v", err)
 	}
 }
 
@@ -22,7 +22,7 @@ func TestGetAilment(t *testing.T) {
 func TestGetBattleStyle(t *testing.T) {
 	_, err := GetBattleStyle("attack")
 	if err != nil {
-		t.Fatal("Failed to get move battle style by name")
+		t.Errorf("GetBattleStyle(\"attack\") failed with error: %v", err)
 	}
 }
 
@@ -30,7 +30,7 @@ func TestGetBattleStyle(t *testing.T) {
 func TestGetCategory(t *testing.T) {
 	_, err := GetCategory("damage")
 	if err != nil {
-		t.Fatal("Failed to get move category by name")
+		t.Errorf("GetCategory(\"damage\") failed with error: %v", err)
 	}
 }
 
@@ -38,7 +38,7 @@ func TestGetCategory(t *testing.T) {
 func TestGetDamageClass(t *testing.T) {
 	_, err := GetDamageClass("physical")
 	if err != nil {
-		t.Fatal("Failed to get move damage class by name")
+		t.Errorf("GetDamageClass(\"physical\") failed with error: %v", err)
 	}
 }
 
@@ -46,7 +46,7 @@ func TestGetDamageClass(t *testing.T) {
 func TestGetLearnMethod(t *testing.T) {
 	_, err := GetLearnMethod("level-up")
 	if err != nil {
-		t.Fatal("Failed to get move learn method by name")
+		t.Errorf("GetLearnMethod(\"level-up\") failed with error: %v", err)
 	}
 }
 
@@ -54,6 +54,6 @@ func TestGetLearnMethod(t *testing.T) {
 func TestGetTarget(t *testing.T) {
 	_, err := GetTarget("specific-move")
 	if err != nil {
-		t.Fatal("Failed to get move target by name")
+		t.Errorf("GetTarget(\"specific-move\") failed with error: %v", err)
 	}
 }
