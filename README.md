@@ -39,8 +39,8 @@ fmt.Println(pokemonList.Results[0].Name)
 - [x] Resource Lists/Pagination
 ---
 - [x] Berries
-- [ ] Contests
-- [ ] Encounters
+- [x] Contests
+- [x] Encounters
 - [ ] Evolution
 - [ ] Games
 - [ ] Items
